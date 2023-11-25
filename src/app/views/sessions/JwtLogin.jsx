@@ -58,7 +58,7 @@ const JwtLogin = () => {
     setLoading(true);
     try {
       await login(values.email, values.password);
-      navigate('/');
+      navigate('/dashboard/default');
     } catch (e) {
       setLoading(false);
     }
