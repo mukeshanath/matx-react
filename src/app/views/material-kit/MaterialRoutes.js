@@ -13,8 +13,10 @@ const AppRadio = Loadable(lazy(() => import('./radio/AppRadio')));
 const AppSlider = Loadable(lazy(() => import('./slider/AppSlider')));
 const AppDialog = Loadable(lazy(() => import('./dialog/AppDialog')));
 const AppSnackbar = Loadable(lazy(() => import('./snackbar/AppSnackbar')));
- const AppAutoComplete = Loadable(lazy(() => import('./auto-complete/AppAutoComplete')));
+const AppAddCompany = Loadable(lazy(() => import('./company/AddCompany')));
+
  const AppCompany = Loadable(lazy(() => import('./company/CompanyList')));
+ const EditCompany = Loadable(lazy(() => import('./company/EditCompanyForm')));
 
 const AppExpansionPanel = Loadable(lazy(() => import('./expansion-panel/AppExpansionPanel')));
 
@@ -33,7 +35,9 @@ const materialRoutes = [
   { path: '/masters/company', element: <AppCompany /> },
   { path: '/material/expansion-panel', element: <AppExpansionPanel /> },
   { path: '/material/dialog', element: <AppDialog /> },
-  { path: '/material/snackbar', element: <AppSnackbar /> }
+  { path: '/material/snackbar', element: <AppSnackbar /> },
+  { path: '/masters/Addcompany', element: <AppAddCompany /> },
+  { path: '/masters/Editcompany', element: <EditCompany /> },
 ];
 
 export default materialRoutes;

@@ -7,6 +7,9 @@ import { Formik } from 'formik';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserDetails,selectUserDetails } from 'app/auth/userSlice';
+
 
 const FlexBox = styled(Box)(() => ({ display: 'flex', alignItems: 'center' }));
 
@@ -48,6 +51,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const JwtLogin = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -58,6 +62,13 @@ const JwtLogin = () => {
     setLoading(true);
     try {
       await login(values.email, values.password);
+      const userData = {
+        username: `mukeshkannaa`,
+        email: `mukeshkanna54@gmail.com`,
+        _id: `90999987766656`
+        // other user properties...
+      };
+     dispatch(setUserDetails(userData));
       navigate('/dashboard/default');
     } catch (e) {
       setLoading(false);

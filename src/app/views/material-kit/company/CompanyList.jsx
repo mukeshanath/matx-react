@@ -1,7 +1,10 @@
 import { Box, styled } from '@mui/material';
 import { Breadcrumb, SimpleCard } from 'app/components';
-import PaginationTable from '../tables/PaginationTable';
+// import PaginationTable from '../tables/PaginationTable';
 import { useLocation } from 'react-router-dom';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import { Link } from 'react-router-dom';
+import CompanyTable from './CompanyTable';
 
 
 const Container = styled('div')(({ theme }) => ({
@@ -29,8 +32,8 @@ const AppCompanyList = () => {
       </Box>
 
       
-      <SimpleCard title="Company List">
-        <PaginationTable />
+      <SimpleCard title="Company List" component={<Link to="/masters/Addcompany"><AddBusinessIcon style={{ float: 'right',color:"rgba(52, 49, 76, 1)" }}/></Link>}>
+        <CompanyTable />
       </SimpleCard>
     </Container>
   );

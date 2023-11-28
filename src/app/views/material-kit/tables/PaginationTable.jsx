@@ -11,6 +11,11 @@ import {
   TableRow,
 } from "@mui/material";
 import { useState } from "react";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const StyledTable = styled(Table)(() => ({
   whiteSpace: "pre",
@@ -21,6 +26,9 @@ const StyledTable = styled(Table)(() => ({
     "& tr": { "& td": { paddingLeft: 0, textTransform: "capitalize" } },
   },
 }));
+
+
+
 
 const subscribarList = [
   {
@@ -101,8 +109,28 @@ const PaginationTable = () => {
     setPage(0);
   };
 
+
+    const showAlert = () => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
+    }
   return (
-    <Box width="100%" overflow="auto">
+    <Box width="100%" overflow="auto" sx={{ px: 2, overflowX: 'auto' }}>
       <StyledTable>
         <TableHead>
           <TableRow>
@@ -111,7 +139,7 @@ const PaginationTable = () => {
             <TableCell align="center">Start Date</TableCell>
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">Amount</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -123,10 +151,15 @@ const PaginationTable = () => {
                 <TableCell align="center">{subscriber.company}</TableCell>
                 <TableCell align="center">{subscriber.date}</TableCell>
                 <TableCell align="center">{subscriber.status}</TableCell>
-                <TableCell align="center">${subscriber.amount}</TableCell>
-                <TableCell align="right">
+                <TableCell align="center">${subscriber.amount}</TableCell> 
+                <TableCell align="center">
+                  <Link to="/masters/Editcompany">
                   <IconButton>
-                    <Icon color="error">close</Icon>
+                    <EditIcon/>&nbsp;
+                  </IconButton>
+                  </Link>
+                  <IconButton onClick={showAlert}>
+                    <DeleteIcon/>
                   </IconButton>
                 </TableCell>
               </TableRow>

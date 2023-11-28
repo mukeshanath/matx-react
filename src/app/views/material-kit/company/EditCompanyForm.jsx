@@ -1,8 +1,11 @@
 import { Stack } from '@mui/material';
 import { Box, styled } from '@mui/material';
 import { Breadcrumb, SimpleCard } from 'app/components';
-import SimpleForm from '../company/Companyform';
-import StepperForm from './StepperForm';
+import { Link } from 'react-router-dom';
+import CancelIcon from '@mui/icons-material/Cancel';
+
+import SimpleForm from './Companyform';
+
 
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',
@@ -13,7 +16,7 @@ const Container = styled('div')(({ theme }) => ({
   }
 }));
 
-const AppForm = () => {
+const EditCompany = () => {
   return (
     <Container>
       <Box className="breadcrumb">
@@ -21,16 +24,14 @@ const AppForm = () => {
       </Box>
 
       <Stack spacing={3}>
-        <SimpleCard title="Simple Form">
-          <SimpleForm />
+        <SimpleCard title="Edit Company" component={<Link to="/masters/company"><CancelIcon style={{ float: 'right',color:"rgba(52, 49, 76, 1)" }}/></Link>}>
+         <SimpleForm/>
         </SimpleCard>
 
-        <SimpleCard title="stepper form">
-          <StepperForm />
-        </SimpleCard>
+    
       </Stack>
     </Container>
   );
 };
 
-export default AppForm;
+export default EditCompany;
